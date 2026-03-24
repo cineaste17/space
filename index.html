@@ -487,9 +487,10 @@
   let descActive=false, descPlanetIdx=-1, descLineIdx=0, descTimer=0;
   const TYPING_SPD=0.30, DL_HOLD=110, DL_OUT=50;
 
-  /* ── pointer lock (desktop look) ── */
+  /* ── pointer lock (desktop only) ── */
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
   canvas.addEventListener('click', ()=>{
-    if(started && !document.pointerLockElement) root.requestPointerLock();
+    if(!isTouch && started && !document.pointerLockElement) root.requestPointerLock();
   });
   document.addEventListener('pointerlockchange', ()=>{
     pointerLocked = !!document.pointerLockElement;
@@ -930,8 +931,8 @@
       document.getElementById('vert-zone').style.display='flex';
       document.getElementById('hud').style.display='block';
       document.getElementById('planet-hud').style.display='block';
-      document.getElementById('lock-hint').style.display='block';
-      setTimeout(()=>root.requestPointerLock(),100);
+      if(!isTouch) document.getElementById('lock-hint').style.display='block';
+      if(!isTouch) setTimeout(()=>root.requestPointerLock(),100);
     }
   }
 
@@ -1426,7 +1427,7 @@
     document.getElementById('joystick-zone').style.display='block';
     document.getElementById('vert-zone').style.display='flex';
     started=true;
-    setTimeout(()=>root.requestPointerLock(), 200);
+    if(!isTouch) setTimeout(()=>root.requestPointerLock(), 200);
   });
 
   resize();
