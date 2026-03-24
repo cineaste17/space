@@ -1,0 +1,8 @@
+# 只追踪 space 游戏的部署文件
+*.html
+!index.html
+space_cs/
+*_backup.html
+派克鸡排寻味记*.html
+call-me.html
+goldfish*.html
