@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Lost in Space — Find the Alien</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap');
@@ -238,6 +238,51 @@
     background: rgba(38,44,58,0.96);
     border: 1px solid rgba(155,170,192,0.50);
     padding: 6px 22px;
+  }
+
+  /* ── Portrait / mobile overrides ── */
+  @media (max-width: 600px), (orientation: portrait) {
+    /* body safe-area */
+    #game-root {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* HUD — compact */
+    #hud {
+      top: 10px; left: 10px;
+      font-size: 9px; padding: 7px 11px 9px;
+      min-width: 118px;
+    }
+    #hud-title { font-size: 8px; padding-bottom: 4px; margin-bottom: 4px; }
+    #planet-hud {
+      top: 10px; right: 10px;
+      font-size: 9px; padding: 7px 11px 9px;
+      min-width: 100px;
+    }
+
+    /* Joystick — larger touch target, above home bar */
+    #joystick-zone {
+      width: 136px; height: 136px;
+      left: 16px;
+      bottom: calc(28px + env(safe-area-inset-bottom));
+    }
+    #joystick-base  { width: 112px; height: 112px; top: 12px; left: 12px; }
+    #joystick-ring  { width: 88px;  height: 88px;  }
+    #joystick-knob  { width: 34px;  height: 34px;  }
+
+    /* Vert buttons — larger, above home bar */
+    #vert-zone {
+      width: 136px; height: 136px;
+      right: 16px;
+      bottom: calc(28px + env(safe-area-inset-bottom));
+    }
+    .vert-btn { width: 112px; height: 56px; font-size: 20px; }
+
+    /* Planet popup — less vertical offset so it stays on screen */
+    #planet-popup { transform: translate(-50%, -56px); font-size: 10px; }
+
+    /* Lock hint — never shown on touch but guard anyway */
+    #lock-hint { display: none !important; }
   }
 </style>
 </head>
