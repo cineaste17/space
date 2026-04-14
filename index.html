@@ -966,7 +966,7 @@ function goScreen(id){
     mBtn.onclick=()=>{
       closeMobileNav();
       if(id==='s-about') abEnterEdit();
-      else if(id==='s-portfolio'){document.getElementById('editPanel').classList.add('open');renderList();}
+      else if(id==='s-portfolio') openEditor();
       else if(id==='s-experience') expEnterEdit();
     };
   }
